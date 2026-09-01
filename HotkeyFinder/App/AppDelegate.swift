@@ -11,6 +11,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             name: NSWorkspace.didActivateApplicationNotification,
             object: nil
         )
+
+        DispatchQueue.main.async {
+            self.removeEmptyTopLevelMenus()
+        }
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
@@ -23,6 +27,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         true
+    }
+
+    private func removeEmptyTopLevelMenus() {
+        guard let mainMenu = NSApp.mainMenu else { return }
+
+        for item in mainMenu.items where item.submenu?.items.isEmpty == true {
+            mainMenu.removeItem(item)
+        }
     }
 
     @objc
