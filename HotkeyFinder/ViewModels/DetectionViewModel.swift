@@ -151,7 +151,11 @@ final class DetectionViewModel: ObservableObject {
                 }
             }
         } else {
-            state = .failed("无法创建键盘事件监听。请确认输入监控权限已开启，然后重试或重新启动应用。")
+            state = .failed(
+                String(
+                    localized: "Couldn’t start keyboard monitoring. Make sure Input Monitoring access is enabled, then try again or restart the app."
+                )
+            )
         }
     }
 

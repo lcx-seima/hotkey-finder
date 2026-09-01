@@ -25,7 +25,6 @@
 	<key>NSHighResolutionCapable</key>
 	<true/>
 	<key>NSInputMonitoringUsageDescription</key>
-	<string>Hotkey Finder 需要监听键盘事件，以识别响应全局快捷键的应用。</string>
+	<string>Hotkey Finder needs Input Monitoring access to identify apps that respond to global keyboard shortcuts.</string>
 </dict>
 </plist>
-

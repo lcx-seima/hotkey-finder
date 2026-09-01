@@ -17,6 +17,10 @@
 		B00000000000000000000008 /* DetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000008 /* DetectionViewModel.swift */; };
 		B00000000000000000000009 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000009 /* ContentView.swift */; };
 		B0000000000000000000000A /* WindowObservationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000000C /* WindowObservationService.swift */; };
+		B0000000000000000000000B /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000000D /* LanguageManager.swift */; };
+		B0000000000000000000000C /* LanguageSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000000E /* LanguageSettingsView.swift */; };
+		B0000000000000000000000D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000000F /* Localizable.xcstrings */; };
+		B0000000000000000000000E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000010 /* InfoPlist.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		C0000000000000000000000A /* Hotkey Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hotkey Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0000000000000000000000B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0000000000000000000000C /* WindowObservationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowObservationService.swift; sourceTree = "<group>"; };
+		C0000000000000000000000D /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+		C0000000000000000000000E /* LanguageSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSettingsView.swift; sourceTree = "<group>"; };
+		C0000000000000000000000F /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		C00000000000000000000010 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				C0000000000000000000000B /* Info.plist */,
+				C00000000000000000000010 /* InfoPlist.xcstrings */,
+				C0000000000000000000000F /* Localizable.xcstrings */,
 				D00000000000000000000003 /* App */,
 				D00000000000000000000004 /* Models */,
 				D00000000000000000000005 /* Services */,
@@ -91,6 +101,7 @@
 				C00000000000000000000005 /* ShortcutFormatter.swift */,
 				C00000000000000000000006 /* ProcessResolver.swift */,
 				C0000000000000000000000C /* WindowObservationService.swift */,
+				C0000000000000000000000D /* LanguageManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -107,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				C00000000000000000000009 /* ContentView.swift */,
+				C0000000000000000000000E /* LanguageSettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -160,6 +172,10 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ja,
+				th,
+				"zh-Hans",
+				"zh-Hant",
 				Base,
 			);
 			mainGroup = D00000000000000000000001;
@@ -177,6 +193,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0000000000000000000000E /* InfoPlist.xcstrings in Resources */,
+				B0000000000000000000000D /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +215,8 @@
 				B00000000000000000000008 /* DetectionViewModel.swift in Sources */,
 				B00000000000000000000009 /* ContentView.swift in Sources */,
 				B0000000000000000000000A /* WindowObservationService.swift in Sources */,
+				B0000000000000000000000B /* LanguageManager.swift in Sources */,
+				B0000000000000000000000C /* LanguageSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

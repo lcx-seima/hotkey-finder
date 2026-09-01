@@ -1,0 +1,41 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "NSInputMonitoringUsageDescription" : {
+      "comment" : "Explains why Hotkey Finder requests Input Monitoring access.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hotkey Finder needs Input Monitoring access to identify apps that respond to global keyboard shortcuts."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "グローバルショートカットに反応したアプリを特定するため、Hotkey Finder には入力監視の許可が必要です。"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hotkey Finder ต้องใช้สิทธิ์การตรวจสอบอินพุตเพื่อระบุแอปที่ตอบสนองต่อปุ่มลัดส่วนกลาง"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hotkey Finder 需要输入监控权限，才能识别响应全局快捷键的 App。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hotkey Finder 需要輸入監控權限，才能識別回應全域快速鍵的 App。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

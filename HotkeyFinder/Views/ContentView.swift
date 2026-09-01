@@ -43,7 +43,7 @@ struct ContentView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text("Hotkey Finder")
                     .font(.title2.weight(.semibold))
-                Text("保持窗口在前台，然后按下要检查的快捷键")
+                Text("Keep this window in front, then press the shortcut you want to inspect.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
@@ -59,22 +59,22 @@ struct ContentView: View {
     private var history: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("最近活动")
+                Text("Recent Activity")
                     .font(.headline)
-                Text("\(viewModel.records.count)/20")
+                Text(verbatim: "\(viewModel.records.count)/20")
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
 
                 Spacer()
 
-                Button("清空记录") {
+                Button("Clear History") {
                     viewModel.clearHistory()
                 }
                 .disabled(viewModel.records.isEmpty)
             }
 
             if viewModel.records.isEmpty {
-                Text("侦测结果会按时间倒序显示在这里。")
+                Text("Detection results appear here, newest first.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, minHeight: 80)
@@ -110,19 +110,19 @@ private struct ScreenCapturePermissionCard: View {
                 .frame(width: 40)
 
             VStack(alignment: .leading, spacing: 8) {
-                Text("启用窗口侦测（可选）")
+                Text("Enable Window Detection (Optional)")
                     .font(.headline)
-                Text("用于识别 Alfred 这类不会激活自身的 App。Hotkey Finder 只比较窗口编号、所属进程和尺寸等元数据，不截取或保存屏幕画面。")
+                Text("Helps identify apps like Alfred that do not become active. Hotkey Finder only compares window metadata such as identifiers, owning processes, and sizes. It never captures or saves your screen.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
 
                 HStack {
-                    Button("授予屏幕录制权限") {
+                    Button("Allow Screen Recording") {
                         viewModel.requestScreenCapturePermission()
                     }
 
-                    Button("打开系统设置") {
+                    Button("Open System Settings") {
                         viewModel.openScreenCaptureSettings()
                     }
                 }
@@ -155,15 +155,15 @@ private struct StatusBadge: View {
     private var title: String {
         switch state {
         case .checkingPermission:
-            "检查权限"
+            String(localized: "Checking Permissions")
         case .permissionRequired:
-            "需要权限"
+            String(localized: "Permission Required")
         case .detecting:
-            "正在侦测"
+            String(localized: "Detecting")
         case .paused:
-            "已暂停"
+            String(localized: "Paused")
         case .failed:
-            "侦测异常"
+            String(localized: "Detection Error")
         }
     }
 
@@ -209,20 +209,20 @@ private struct PermissionCard: View {
                 .frame(width: 40)
 
             VStack(alignment: .leading, spacing: 8) {
-                Text("需要输入监控权限")
+                Text("Input Monitoring Access Required")
                     .font(.headline)
-                Text("Hotkey Finder 仅在窗口位于前台时读取快捷键事件，用来判断事件被路由到了哪个 App。它不会修改或拦截按键。")
+                Text("Hotkey Finder reads keyboard events only while its window is in front so it can identify which app receives a shortcut. It never changes or blocks your keystrokes.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
 
                 HStack {
-                    Button("授予输入监控权限") {
+                    Button("Allow Input Monitoring") {
                         viewModel.requestInputMonitoringPermission()
                     }
                     .keyboardShortcut(.defaultAction)
 
-                    Button("打开系统设置") {
+                    Button("Open System Settings") {
                         viewModel.openInputMonitoringSettings()
                     }
                 }
@@ -252,17 +252,17 @@ private struct FailureCard: View {
                 .frame(width: 40)
 
             VStack(alignment: .leading, spacing: 8) {
-                Text("无法启动侦测")
+                Text("Unable to Start Detection")
                     .font(.headline)
                 Text(message)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
 
                 HStack {
-                    Button("重试") {
+                    Button("Try Again") {
                         viewModel.retryDetection()
                     }
-                    Button("打开系统设置") {
+                    Button("Open System Settings") {
                         viewModel.openInputMonitoringSettings()
                     }
                 }
@@ -285,7 +285,7 @@ private struct LatestResultCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text("当前结果")
+            Text("Current Result")
                 .font(.headline)
 
             if let record {
@@ -316,9 +316,9 @@ private struct LatestResultCard: View {
                         .frame(width: 58, height: 58)
 
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("等待快捷键")
+                        Text("Waiting for a Shortcut")
                             .font(.title3.weight(.semibold))
-                        Text("支持带修饰键的组合键以及 F1–F20。")
+                        Text("Shortcuts with modifiers and F1–F20 are supported.")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
@@ -430,28 +430,35 @@ private struct OutcomeDetails: View {
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
             case .noExternalTarget:
-                Text("未检测到外部响应 App")
+                Text("No Responding App Detected")
                     .font(prominent ? .title3.weight(.semibold) : .body)
                     .lineLimit(1)
                 if prominent {
-                    Text("该事件仍然指向 Hotkey Finder。")
+                    Text("The event is still targeting Hotkey Finder.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
             case let .unknownTarget(pid):
-                Text("无法解析目标进程")
+                Text("Unable to Identify Target Process")
                     .font(prominent ? .title3.weight(.semibold) : .body)
                     .lineLimit(1)
-                Text(pid > 0 ? "PID \(pid)" : "系统没有提供有效的目标 PID")
-                    .font(.caption.monospaced())
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
+                if pid > 0 {
+                    Text(verbatim: "PID \(pid)")
+                        .font(.caption.monospaced())
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                } else {
+                    Text("The system did not provide a valid target PID.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                }
             }
         }
     }
 
     private func metadata(for application: DetectedApplication) -> String {
-        let identifier = application.bundleIdentifier ?? "无 Bundle ID"
+        let identifier = application.bundleIdentifier ?? String(localized: "No Bundle ID")
         return "\(identifier)  ·  PID \(application.pid)"
     }
 }

@@ -43,8 +43,41 @@ enum ShortcutFormatter {
             components.append("⌘")
         }
 
-        components.append(keyNames[keyCode] ?? "KeyCode \(keyCode)")
+        components.append(displayName(for: keyCode))
         return components.joined()
+    }
+
+    private static func displayName(for keyCode: CGKeyCode) -> String {
+        switch keyCode {
+        case 36:
+            String(localized: "Return")
+        case 48:
+            String(localized: "Tab")
+        case 49:
+            String(localized: "Space")
+        case 51:
+            String(localized: "Delete")
+        case 53:
+            String(localized: "Esc")
+        case 114:
+            String(localized: "Help")
+        case 115:
+            String(localized: "Home")
+        case 116:
+            String(localized: "Page Up")
+        case 117:
+            String(localized: "Forward Delete")
+        case 119:
+            String(localized: "End")
+        case 121:
+            String(localized: "Page Down")
+        default:
+            keyNames[keyCode]
+                ?? String.localizedStringWithFormat(
+                    String(localized: "KeyCode %d"),
+                    Int(keyCode)
+                )
+        }
     }
 
     private static func hasSupportedModifier(_ flags: CGEventFlags) -> Bool {
@@ -54,4 +87,3 @@ enum ShortcutFormatter {
             || flags.contains(.maskShift)
     }
 }
-

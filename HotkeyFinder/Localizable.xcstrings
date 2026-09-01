@@ -1,0 +1,456 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Allow Input Monitoring" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "入力監視を許可" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "อนุญาตการตรวจสอบอินพุต" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "允许输入监控" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "允許輸入監控" } }
+      }
+    },
+    "Allow Screen Recording" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "画面収録を許可" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "อนุญาตการบันทึกหน้าจอ" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "允许屏幕录制" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "允許螢幕錄製" } }
+      }
+    },
+    "App Activation" : {
+      "comment" : "Detection method: the target was inferred because an app became active after the shortcut.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "アプリのアクティブ化" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "การเปิดใช้งานแอป" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "App 激活" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "App 啟用" } }
+      }
+    },
+    "Checking Permissions" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "権限を確認中" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "กำลังตรวจสอบสิทธิ์" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "正在检查权限" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "正在檢查權限" } }
+      }
+    },
+    "Choose the language Hotkey Finder uses." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "Hotkey Finder で使用する言語を選択します。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "เลือกภาษาที่ต้องการใช้ใน Hotkey Finder" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "选择 Hotkey Finder 使用的语言。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "選擇 Hotkey Finder 使用的語言。" } }
+      }
+    },
+    "Clear History" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "履歴を消去" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ล้างประวัติ" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "清空记录" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "清除記錄" } }
+      }
+    },
+    "Couldn’t Restart" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "再起動できませんでした" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "เปิดแอปใหม่ไม่ได้" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "无法重启" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "無法重新啟動" } }
+      }
+    },
+    "Couldn’t start keyboard monitoring. Make sure Input Monitoring access is enabled, then try again or restart the app." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "キー入力の監視を開始できませんでした。入力監視が許可されていることを確認してから、もう一度試すかアプリを再起動してください。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "เริ่มตรวจสอบแป้นพิมพ์ไม่ได้ โปรดตรวจสอบว่าอนุญาตการตรวจสอบอินพุตแล้ว จากนั้นลองอีกครั้งหรือเปิดแอปใหม่" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "无法启动键盘监控。请确认已允许输入监控，然后重试或重新启动 App。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "無法啟動鍵盤監控。請確認已允許輸入監控，然後再試一次或重新啟動 App。" } }
+      }
+    },
+    "Current Result" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "現在の結果" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ผลลัพธ์ปัจจุบัน" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "当前结果" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "目前結果" } }
+      }
+    },
+    "Delete" : {
+      "comment" : "A keyboard key label.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "削除" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "Delete" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "删除" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "刪除" } }
+      }
+    },
+    "Detecting" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "検出中" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "กำลังตรวจจับ" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "正在侦测" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "正在偵測" } }
+      }
+    },
+    "Detection Error" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "検出エラー" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "การตรวจจับผิดพลาด" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "侦测异常" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "偵測錯誤" } }
+      }
+    },
+    "Detection results appear here, newest first." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "新しい検出結果から順にここに表示されます。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ผลการตรวจจับล่าสุดจะแสดงที่นี่ก่อน" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "侦测结果会按时间倒序显示在这里。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "偵測結果會依時間由新到舊顯示在這裡。" } }
+      }
+    },
+    "Enable Window Detection (Optional)" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ウインドウ検出を有効にする（任意）" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "เปิดการตรวจจับหน้าต่าง (ไม่บังคับ)" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "启用窗口侦测（可选）" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "啟用視窗偵測（選用）" } }
+      }
+    },
+    "End" : {
+      "comment" : "A keyboard key label.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "End" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "End" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "End" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "End" } }
+      }
+    },
+    "Esc" : {
+      "comment" : "A keyboard key label.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "Esc" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "Esc" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "Esc" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "Esc" } }
+      }
+    },
+    "Event Target" : {
+      "comment" : "Detection method: the process ID attached to the keyboard event identified the target app.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "イベントの送信先" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "เป้าหมายอีเวนต์" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "事件目标" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "事件目標" } }
+      }
+    },
+    "Follow System" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "システム設定に合わせる" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ตามภาษาของระบบ" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "跟随系统" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "依照系統設定" } }
+      }
+    },
+    "Forward Delete" : {
+      "comment" : "A keyboard key label.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "前方削除" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ลบไปข้างหน้า" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "向前删除" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "向前刪除" } }
+      }
+    },
+    "Help" : {
+      "comment" : "A keyboard key label, not the Help menu.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ヘルプ" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "วิธีใช้" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "帮助" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "輔助說明" } }
+      }
+    },
+    "Helps identify apps like Alfred that do not become active. Hotkey Finder only compares window metadata such as identifiers, owning processes, and sizes. It never captures or saves your screen." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "Alfred のようにアクティブにならないアプリを特定するために使用します。Hotkey Finder が参照するのは、ウインドウ識別子、所有プロセス、サイズなどのメタデータだけです。画面を撮影したり保存したりすることはありません。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ช่วยระบุแอปอย่าง Alfred ที่ไม่แสดงเป็นแอปที่ใช้งานอยู่ Hotkey Finder จะเปรียบเทียบเฉพาะข้อมูลหน้าต่าง เช่น รหัส โปรเซสเจ้าของ และขนาด โดยจะไม่จับภาพหรือบันทึกหน้าจอของคุณ" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "用于识别 Alfred 这类不会激活自身的 App。Hotkey Finder 只比较窗口编号、所属进程和尺寸等元数据，不会截取或保存屏幕画面。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "用來識別 Alfred 這類不會主動啟用的 App。Hotkey Finder 只會比較視窗識別碼、所屬程序和大小等中繼資料，不會擷取或儲存螢幕畫面。" } }
+      }
+    },
+    "Home" : {
+      "comment" : "A keyboard key label.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ホーム" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "Home" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "Home" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "Home" } }
+      }
+    },
+    "Hotkey Finder" : {
+      "shouldTranslate" : false
+    },
+    "Hotkey Finder couldn’t restart automatically. Quit and reopen the app to apply the language change." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "Hotkey Finder を自動的に再起動できませんでした。アプリを終了してもう一度開くと、言語の変更が反映されます。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "Hotkey Finder ไม่สามารถเปิดใหม่โดยอัตโนมัติได้ โปรดออกจากแอปแล้วเปิดอีกครั้งเพื่อใช้ภาษาที่เลือก" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "Hotkey Finder 无法自动重启。请退出并重新打开 App，以应用语言更改。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "Hotkey Finder 無法自動重新啟動。請結束並重新開啟 App，以套用語言變更。" } }
+      }
+    },
+    "Hotkey Finder reads keyboard events only while its window is in front so it can identify which app receives a shortcut. It never changes or blocks your keystrokes." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "Hotkey Finder は、ウインドウが前面にある間だけキー入力イベントを読み取り、ショートカットを受け取ったアプリを特定します。キー入力を変更したりブロックしたりすることはありません。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "Hotkey Finder จะอ่านอีเวนต์จากแป้นพิมพ์เฉพาะตอนที่หน้าต่างอยู่ด้านหน้า เพื่อระบุว่าแอปใดได้รับปุ่มลัด โดยจะไม่แก้ไขหรือบล็อกการกดแป้นของคุณ" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "Hotkey Finder 仅在窗口位于前台时读取键盘事件，用于判断哪个 App 收到了快捷键。它不会修改或拦截你的按键。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "Hotkey Finder 只會在視窗位於最前方時讀取鍵盤事件，用來判斷哪個 App 收到快速鍵。它不會修改或攔截你的按鍵。" } }
+      }
+    },
+    "Input Monitoring Access Required" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "入力監視の許可が必要です" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ต้องอนุญาตการตรวจสอบอินพุต" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "需要输入监控权限" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "需要輸入監控權限" } }
+      }
+    },
+    "Keep this window in front, then press the shortcut you want to inspect." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "このウインドウを前面に表示したまま、調べたいショートカットを押してください。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "วางหน้าต่างนี้ไว้ด้านหน้า แล้วกดปุ่มลัดที่ต้องการตรวจสอบ" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "保持此窗口在前台，然后按下要检查的快捷键。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "將此視窗保持在最前方，然後按下想要檢查的快速鍵。" } }
+      }
+    },
+    "KeyCode %d" : {
+      "comment" : "Fallback keyboard key label. %d is the numeric hardware key code.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "キーコード %d" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "รหัสปุ่ม %d" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "键码 %d" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "按鍵碼 %d" } }
+      }
+    },
+    "Language" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "言語" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ภาษา" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "语言" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "語言" } }
+      }
+    },
+    "Later" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "後で" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ไว้ภายหลัง" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "稍后" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "稍後" } }
+      }
+    },
+    "New Window" : {
+      "comment" : "Detection method: a newly visible window identified the target app.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "新規ウインドウ" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "หน้าต่างใหม่" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新窗口" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "新視窗" } }
+      }
+    },
+    "No Bundle ID" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "Bundle ID なし" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ไม่มี Bundle ID" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "无 Bundle ID" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "無 Bundle ID" } }
+      }
+    },
+    "No Responding App Detected" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "反応したアプリは見つかりませんでした" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ไม่พบแอปที่ตอบสนอง" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未侦测到响应的 App" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "未偵測到有回應的 App" } }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "OK" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ตกลง" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "好" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "好" } }
+      }
+    },
+    "Open System Settings" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "システム設定を開く" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "เปิดการตั้งค่าระบบ" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "打开系统设置" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "打開系統設定" } }
+      }
+    },
+    "Page Down" : {
+      "comment" : "A keyboard key label.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "Page Down" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "Page Down" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "下一页" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "下一頁" } }
+      }
+    },
+    "Page Up" : {
+      "comment" : "A keyboard key label.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "Page Up" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "Page Up" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "上一页" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "上一頁" } }
+      }
+    },
+    "Paused" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "一時停止" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "หยุดชั่วคราว" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已暂停" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "已暫停" } }
+      }
+    },
+    "Permission Required" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "権限が必要です" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ต้องอนุญาตสิทธิ์" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "需要权限" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "需要權限" } }
+      }
+    },
+    "Recent Activity" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "最近の検出" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "กิจกรรมล่าสุด" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "最近活动" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "最近的活動" } }
+      }
+    },
+    "Restart Hotkey Finder?" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "Hotkey Finder を再起動しますか？" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "เปิด Hotkey Finder ใหม่หรือไม่" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "重新启动 Hotkey Finder？" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "要重新啟動 Hotkey Finder 嗎？" } }
+      }
+    },
+    "Restart Now" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "今すぐ再起動" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "เปิดใหม่ตอนนี้" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "立即重启" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "立即重新啟動" } }
+      }
+    },
+    "Restart required to apply this change." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "変更を反映するには再起動が必要です。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ต้องเปิดแอปใหม่เพื่อใช้การเปลี่ยนแปลงนี้" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "需要重启才能应用此更改。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "需要重新啟動才能套用此變更。" } }
+      }
+    },
+    "Return" : {
+      "comment" : "A keyboard key label.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "return" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "Enter" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "回车" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "Return" } }
+      }
+    },
+    "Shortcuts with modifiers and F1–F20 are supported." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "修飾キーを含むショートカットと F1〜F20 に対応しています。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "รองรับปุ่มลัดที่ใช้ปุ่มปรับค่าและปุ่ม F1–F20" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "支持带修饰键的组合键以及 F1–F20。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "支援包含變更鍵的快速鍵以及 F1–F20。" } }
+      }
+    },
+    "Space" : {
+      "comment" : "A keyboard key label.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "スペース" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "Space" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "空格" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "空白鍵" } }
+      }
+    },
+    "System match:" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "システムに合わせた言語：" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ภาษาที่ระบบเลือก:" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "系统匹配：" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "系統符合語言：" } }
+      }
+    },
+    "Tab" : {
+      "comment" : "A keyboard key label.",
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "tab" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "Tab" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "Tab" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "Tab" } }
+      }
+    },
+    "The event is still targeting Hotkey Finder." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "イベントの送信先は引き続き Hotkey Finder です。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "อีเวนต์ยังคงส่งไปยัง Hotkey Finder" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "该事件仍然指向 Hotkey Finder。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "此事件仍然指向 Hotkey Finder。" } }
+      }
+    },
+    "The language change will take effect after Hotkey Finder restarts." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "Hotkey Finder を再起動すると、言語の変更が反映されます。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ภาษาที่เลือกจะมีผลหลังจากเปิด Hotkey Finder ใหม่" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "重新启动 Hotkey Finder 后，语言更改才会生效。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "重新啟動 Hotkey Finder 後，語言變更才會生效。" } }
+      }
+    },
+    "The system did not provide a valid target PID." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "有効な対象 PID がシステムから返されませんでした。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ระบบไม่ได้ระบุ PID เป้าหมายที่ถูกต้อง" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "系统没有提供有效的目标 PID。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "系統未提供有效的目標 PID。" } }
+      }
+    },
+    "Try Again" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "もう一度試す" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ลองอีกครั้ง" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "重试" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "再試一次" } }
+      }
+    },
+    "Unable to Identify Target Process" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "対象プロセスを特定できません" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ระบุโปรเซสเป้าหมายไม่ได้" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "无法识别目标进程" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "無法識別目標程序" } }
+      }
+    },
+    "Unable to Start Detection" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "検出を開始できません" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "เริ่มการตรวจจับไม่ได้" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "无法启动侦测" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "無法開始偵測" } }
+      }
+    },
+    "Waiting for a Shortcut" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ショートカットを待機中" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "กำลังรอปุ่มลัด" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "等待快捷键" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "等待快速鍵" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}

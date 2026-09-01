@@ -42,11 +42,11 @@ enum DetectionMethod {
     var displayName: String {
         switch self {
         case .eventTarget:
-            "事件目标"
+            String(localized: "Event Target")
         case .applicationActivation:
-            "App 激活"
+            String(localized: "App Activation")
         case .newWindow:
-            "新窗口"
+            String(localized: "New Window")
         }
     }
 }

@@ -1,17 +1,21 @@
 # Hotkey Finder
 
-Hotkey Finder 是一个现代 macOS 原生快捷键侦测器。把窗口放在前台并按下快捷键，它会结合系统键盘事件的目标 PID、随后发生的 App 激活事件，以及可选的窗口变化，判断哪个 App 响应了该快捷键。
+**English** | [简体中文](README.zh-CN.md)
 
-## 环境
+Hotkey Finder is a native macOS utility that helps identify which app responds to a keyboard shortcut. Keep its window in front and press a shortcut; it correlates the keyboard event's target process, app activation changes, and—when enabled—newly visible windows.
 
-- macOS 14 或更高版本
-- Xcode 26 或更高版本
-- 需要授予“输入监控”权限
-- 可选授予“屏幕录制”权限，用于识别 Alfred 等不激活自身的 App；只读取窗口元数据，不截取画面
+## Requirements
 
-项目没有第三方依赖，也不包含状态栏入口。关闭主窗口会退出应用。
+- macOS 14 or later
+- Xcode 26 or later
+- Input Monitoring access
+- Optional Screen Recording access for apps such as Alfred that do not become active
 
-## 构建
+Screen Recording access is used only to compare window metadata such as identifiers, owning processes, and sizes. Hotkey Finder does not capture or save screen content.
+
+The project has no third-party dependencies or menu bar item. Closing its last window quits the app.
+
+## Build
 
 ```bash
 xcodebuild \
@@ -23,21 +27,35 @@ xcodebuild \
   build
 ```
 
-## 人工验证
+## Language
 
-1. 用 Xcode 运行应用，点击“授予输入监控权限”。如果系统要求重启应用，退出后重新运行。
-2. 保持 Hotkey Finder 为前台窗口，按一个本地组合键，例如 `⌘P`，确认出现“未检测到外部响应 App”。
-3. 点击“授予屏幕录制权限”，按系统提示重启应用。这项权限不影响基础侦测，但 Alfred 一类后台 App 需要它来进行窗口变化匹配。
-4. 按一个已知的全局快捷键，例如 Spotlight、Raycast 或 Alfred 的快捷键，确认结果展示目标 App 的名称、图标、Bundle ID、PID 和侦测来源。
-5. 按 F1–F20 中的按键，确认能生成记录；长按按键不会持续产生重复记录。
-6. 切换到其他 App，确认侦测暂停；返回 Hotkey Finder 后确认自动恢复。
-7. 连续产生超过 20 条记录，确认只保留最近 20 条；点击“清空记录”确认列表被清空。
+Open **Hotkey Finder > Settings…** or press `⌘,` to choose one of the following:
 
-## 已知边界
+- Follow System
+- English
+- Simplified Chinese
+- Traditional Chinese
+- Japanese
+- Thai
 
-- 第一版只做实时侦测，不扫描 App 菜单、系统快捷键、Karabiner、skhd 或其他配置。
-- Hotkey Finder 使用 session event tap 尽早观察键盘事件；如果事件在进入用户会话前就被系统或驱动吞掉，仍可能无法侦测。
-- 对于没有激活 App、没有暴露有效目标 PID、也没有产生可见窗口变化的全局快捷键，系统公开 API 无法可靠提供注册者。
-- 窗口侦测使用按键前后的窗口集合差异进行推断；如果多个 App 同时创建窗口，结果可能存在误判。
-- 仅记录带 `⌘`、`⌥`、`⌃`、`⇧` 的组合键以及 F1–F20；普通字符、仅修饰键和媒体键不会记录。
-- 侦测历史只保存在当前进程内，退出后清空。
+When following the system, Settings shows the language that Hotkey Finder will use. Unsupported system languages fall back to English. A language change takes effect after the app restarts.
+
+## Manual Verification
+
+1. Run the app from Xcode and allow Input Monitoring. If macOS asks you to restart the app, quit and run it again.
+2. Keep Hotkey Finder in front and press a local shortcut such as `⌘P`; verify that the result says no responding app was detected.
+3. Optionally allow Screen Recording and restart when prompted. This enables window-based matching for background-style apps such as Alfred.
+4. Press a known global shortcut for Spotlight, Raycast, or Alfred; verify the target app's name, icon, bundle identifier, PID, and detection method.
+5. Press keys from F1 through F20 and verify that records are created. Holding a key should not create repeated records.
+6. Switch to another app and verify detection pauses, then return to Hotkey Finder and verify it resumes.
+7. Open Settings from both the app menu and `⌘,`, change the language, restart, and verify both windows use the selected language.
+8. Create more than 20 records and verify only the latest 20 remain. Clear History should remove them all.
+
+## Known Limitations
+
+- This version performs live detection only. It does not scan app menus, system shortcut settings, Karabiner, skhd, or other configuration files.
+- Hotkey Finder uses a session event tap to observe keyboard events early. Events consumed by the system or a driver before reaching the user session may still be undetectable.
+- Public macOS APIs cannot reliably identify a shortcut owner when there is no app activation, valid target PID, or visible window change.
+- Window detection infers the target by comparing windows before and after a shortcut. Simultaneous window creation by multiple apps can produce a false match.
+- Only shortcuts containing `⌘`, `⌥`, `⌃`, or `⇧`, plus F1–F20, are recorded. Plain characters, modifier-only events, and media keys are ignored.
+- Detection history is stored in memory and is cleared when the app quits.
