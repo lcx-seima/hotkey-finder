@@ -16,6 +16,7 @@
 		B00000000000000000000007 /* EventTapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000007 /* EventTapManager.swift */; };
 		B00000000000000000000008 /* DetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000008 /* DetectionViewModel.swift */; };
 		B00000000000000000000009 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000009 /* ContentView.swift */; };
+		B0000000000000000000000A /* WindowObservationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000000C /* WindowObservationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		C00000000000000000000009 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C0000000000000000000000A /* Hotkey Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hotkey Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0000000000000000000000B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0000000000000000000000C /* WindowObservationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowObservationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				C00000000000000000000007 /* EventTapManager.swift */,
 				C00000000000000000000005 /* ShortcutFormatter.swift */,
 				C00000000000000000000006 /* ProcessResolver.swift */,
+				C0000000000000000000000C /* WindowObservationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				B00000000000000000000007 /* EventTapManager.swift in Sources */,
 				B00000000000000000000008 /* DetectionViewModel.swift in Sources */,
 				B00000000000000000000009 /* ContentView.swift in Sources */,
+				B0000000000000000000000A /* WindowObservationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -34,10 +34,28 @@ enum DetectionOutcome {
     case unknownTarget(pid_t)
 }
 
+enum DetectionMethod {
+    case eventTarget
+    case applicationActivation
+    case newWindow
+
+    var displayName: String {
+        switch self {
+        case .eventTarget:
+            "事件目标"
+        case .applicationActivation:
+            "App 激活"
+        case .newWindow:
+            "新窗口"
+        }
+    }
+}
+
 struct DetectionRecord: Identifiable {
     let id = UUID()
     let detectedAt: Date
     let shortcut: String
     let keyCode: CGKeyCode
     let outcome: DetectionOutcome
+    let method: DetectionMethod?
 }

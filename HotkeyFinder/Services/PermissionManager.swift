@@ -21,5 +21,22 @@ enum PermissionManager {
 
         NSWorkspace.shared.open(url)
     }
-}
 
+    static var hasScreenCapturePermission: Bool {
+        CGPreflightScreenCaptureAccess()
+    }
+
+    @discardableResult
+    static func requestScreenCapturePermission() -> Bool {
+        CGRequestScreenCaptureAccess()
+    }
+
+    static func openScreenCaptureSettings() {
+        guard let url = URL(
+            string: "x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture"
+        ) else {
+            return
+        }
+        NSWorkspace.shared.open(url)
+    }
+}

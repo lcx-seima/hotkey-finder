@@ -13,8 +13,14 @@ struct ContentView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     if !viewModel.hasInputMonitoringPermission {
                         PermissionCard(viewModel: viewModel)
-                    } else if case let .failed(message) = viewModel.state {
-                        FailureCard(message: message, viewModel: viewModel)
+                    } else {
+                        if case let .failed(message) = viewModel.state {
+                            FailureCard(message: message, viewModel: viewModel)
+                        }
+
+                        if !viewModel.hasScreenCapturePermission {
+                            ScreenCapturePermissionCard(viewModel: viewModel)
+                        }
                     }
 
                     LatestResultCard(record: viewModel.latestRecord)
@@ -89,6 +95,47 @@ struct ContentView: View {
                         .stroke(.separator.opacity(0.45), lineWidth: 1)
                 }
             }
+        }
+    }
+}
+
+private struct ScreenCapturePermissionCard: View {
+    @ObservedObject var viewModel: DetectionViewModel
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 16) {
+            Image(systemName: "macwindow.on.rectangle")
+                .font(.system(size: 27))
+                .foregroundStyle(Color.accentColor)
+                .frame(width: 40)
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text("启用窗口侦测（可选）")
+                    .font(.headline)
+                Text("用于识别 Alfred 这类不会激活自身的 App。Hotkey Finder 只比较窗口编号、所属进程和尺寸等元数据，不截取或保存屏幕画面。")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                HStack {
+                    Button("授予屏幕录制权限") {
+                        viewModel.requestScreenCapturePermission()
+                    }
+
+                    Button("打开系统设置") {
+                        viewModel.openScreenCaptureSettings()
+                    }
+                }
+                .padding(.top, 4)
+            }
+
+            Spacer(minLength: 0)
+        }
+        .padding(18)
+        .background(Color.accentColor.opacity(0.07), in: RoundedRectangle(cornerRadius: 14))
+        .overlay {
+            RoundedRectangle(cornerRadius: 14)
+                .stroke(Color.accentColor.opacity(0.2), lineWidth: 1)
         }
     }
 }
@@ -250,6 +297,9 @@ private struct LatestResultCard: View {
                             .font(.system(size: 28, weight: .bold, design: .rounded))
                             .monospaced()
                         OutcomeDetails(outcome: record.outcome, prominent: true)
+                        if let method = record.method {
+                            DetectionMethodBadge(method: method)
+                        }
                     }
 
                     Spacer()
@@ -301,12 +351,31 @@ private struct HistoryRow: View {
 
             Spacer(minLength: 8)
 
-            Text(record.detectedAt, style: .time)
-                .font(.caption.monospacedDigit())
-                .foregroundStyle(.secondary)
+            VStack(alignment: .trailing, spacing: 5) {
+                Text(record.detectedAt, style: .time)
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(.secondary)
+
+                if let method = record.method {
+                    DetectionMethodBadge(method: method)
+                }
+            }
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 11)
+    }
+}
+
+private struct DetectionMethodBadge: View {
+    let method: DetectionMethod
+
+    var body: some View {
+        Text(method.displayName)
+            .font(.caption2.weight(.medium))
+            .foregroundStyle(.secondary)
+            .padding(.horizontal, 7)
+            .padding(.vertical, 3)
+            .background(.quaternary.opacity(0.7), in: Capsule())
     }
 }
 
