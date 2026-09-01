@@ -1,8 +1,33 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "CFBundleDisplayName" : {
+      "comment" : "Bundle display name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hotkey Finder"
+          }
+        }
+      }
+    },
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hotkey Finder"
+          }
+        }
+      }
+    },
     "NSInputMonitoringUsageDescription" : {
       "comment" : "Explains why Hotkey Finder requests Input Monitoring access.",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
