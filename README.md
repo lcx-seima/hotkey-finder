@@ -15,6 +15,16 @@ Screen Recording access is used only to compare window metadata such as identifi
 
 The project has no third-party dependencies or menu bar item. Closing its last window quits the app.
 
+## Local Signing
+
+To run the app from Xcode with your own Apple Developer account, create a local signing configuration:
+
+```bash
+cp Config/Local.xcconfig.example Config/Local.xcconfig
+```
+
+Then set `DEVELOPMENT_TEAM` in `Config/Local.xcconfig` to your Apple Developer Team ID. This file is ignored by Git. Command-line builds with code signing disabled do not require it.
+
 ## Build
 
 ```bash

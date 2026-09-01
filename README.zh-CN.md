@@ -15,6 +15,16 @@ Hotkey Finder 是一款原生 macOS 快捷键侦测工具。将窗口保持在�
 
 项目没有第三方依赖，也不包含菜单栏入口。关闭最后一个窗口会退出 App。
 
+## 本地签名
+
+如果需要在 Xcode 中使用自己的 Apple Developer 账号运行 App，请创建本地签名配置：
+
+```bash
+cp Config/Local.xcconfig.example Config/Local.xcconfig
+```
+
+然后在 `Config/Local.xcconfig` 中将 `DEVELOPMENT_TEAM` 设置为你的 Apple Developer Team ID。该文件已被 Git 忽略；关闭代码签名的命令行构建不需要此配置。
+
 ## 构建
 
 ```bash

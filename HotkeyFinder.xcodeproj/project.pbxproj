@@ -40,6 +40,8 @@
 		C0000000000000000000000E /* LanguageSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSettingsView.swift; sourceTree = "<group>"; };
 		C0000000000000000000000F /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C00000000000000000000010 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		C00000000000000000000011 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		C00000000000000000000012 /* Local.xcconfig.example */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig.example; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		D00000000000000000000001 = {
 			isa = PBXGroup;
 			children = (
+				D00000000000000000000009 /* Config */,
 				D00000000000000000000002 /* HotkeyFinder */,
 				D00000000000000000000008 /* Products */,
 			);
@@ -129,6 +132,15 @@
 				C0000000000000000000000A /* Hotkey Finder.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D00000000000000000000009 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				C00000000000000000000011 /* Project.xcconfig */,
+				C00000000000000000000012 /* Local.xcconfig.example */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,6 +351,7 @@
 		};
 		F00000000000000000000005 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C00000000000000000000011 /* Project.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -361,6 +374,7 @@
 		};
 		F00000000000000000000006 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C00000000000000000000011 /* Project.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;

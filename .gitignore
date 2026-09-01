@@ -9,6 +9,7 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+/Config/Local.xcconfig
 
 # Swift Package Manager
 .build/
@@ -18,4 +19,3 @@ Package.resolved
 # Local tooling
 .idea/
 .vscode/
-
