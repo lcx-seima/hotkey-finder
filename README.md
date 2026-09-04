@@ -1,31 +1,62 @@
-# Hotkey Finder
+<div align="center">
+  <img src="HotkeyFinder/Assets.xcassets/AppIcon.appiconset/AppIcon-256.png" width="128" height="128" alt="Hotkey Finder icon">
+  <h1>Hotkey Finder</h1>
+  <p>A native macOS utility for finding the app behind a keyboard shortcut.</p>
+  <p><strong>English</strong> · <a href="README.zh-CN.md">简体中文</a></p>
+</div>
 
-**English** | [简体中文](README.zh-CN.md)
+<div align="center">
+  <img src="docs/assets/demo.gif" width="400" alt="Hotkey Finder detecting the app behind a keyboard shortcut">
+</div>
 
-Hotkey Finder is a native macOS utility that helps identify which app responds to a keyboard shortcut. Keep its window in front and press a shortcut; it correlates the keyboard event's target process, app activation changes, and—when enabled—newly visible windows.
+Hotkey Finder helps answer a deceptively difficult question: **which app just handled that shortcut?** Keep Hotkey Finder in front, press the shortcut you want to inspect, and it correlates several macOS signals to identify the most likely responding app.
+
+## ShortcutDetective Alternative
+
+Hotkey Finder is a macOS alternative to [ShortcutDetective](https://www.irradiatedsoftware.com/labs/), inspired by its simple and focused approach. Thanks to Irradiated Software for the original idea.
+
+## Features
+
+- Identifies an app from the keyboard event target, app activation, or a newly visible window
+- Shows the app name, icon, bundle identifier, PID, and detection method
+- Records shortcuts with modifiers and function keys from F1 through F20
+- Keeps the latest 20 results and ignores key-repeat noise
+- Pauses detection whenever Hotkey Finder is not the active app
+- Supports English, Simplified Chinese, Traditional Chinese, Japanese, and Thai
+- Built entirely with Apple frameworks, with no third-party dependencies
+
+## How It Works
+
+For every shortcut, Hotkey Finder tries the strongest available signals in order:
+
+1. It checks the process targeted by the keyboard event.
+2. It observes whether another app becomes active immediately afterward.
+3. With optional Screen Recording access, it compares visible-window metadata to find apps such as Alfred that open a panel without becoming active.
+4. If none of these signals identifies another process, it reports that no responding app was detected.
+
+Detection is best-effort because macOS does not expose a public API that reliably reports the owner of every global shortcut.
 
 ## Requirements
 
 - macOS 14 or later
-- Xcode 26 or later
+- Xcode 26 or later when building from source
 - Input Monitoring access
-- Optional Screen Recording access for apps such as Alfred that do not become active
+- Optional Screen Recording access for window-based detection
 
-Screen Recording access is used only to compare window metadata such as identifiers, owning processes, and sizes. Hotkey Finder does not capture or save screen content.
+## Build and Run
 
-The project has no third-party dependencies or menu bar item. Closing its last window quits the app.
-
-## Local Signing
-
-To run the app from Xcode with your own Apple Developer account, create a local signing configuration:
+Prebuilt downloads are not available yet. To run Hotkey Finder from Xcode:
 
 ```bash
+git clone https://github.com/lcx-seima/hotkey-finder.git
+cd hotkey-finder
 cp Config/Local.xcconfig.example Config/Local.xcconfig
+open HotkeyFinder.xcodeproj
 ```
 
-Then set `DEVELOPMENT_TEAM` in `Config/Local.xcconfig` to your Apple Developer Team ID. This file is ignored by Git. Command-line builds with code signing disabled do not require it.
+Set `DEVELOPMENT_TEAM` in `Config/Local.xcconfig` to your Apple Developer Team ID, select the **HotkeyFinder** scheme, and run the app. `Config/Local.xcconfig` is ignored by Git.
 
-## Build
+To verify that the project builds without code signing:
 
 ```bash
 xcodebuild \
@@ -37,35 +68,47 @@ xcodebuild \
   build
 ```
 
+## Usage
+
+1. Launch Hotkey Finder and grant Input Monitoring access. Restart the app if macOS asks you to.
+2. Keep the Hotkey Finder window in front.
+3. Press the shortcut you want to inspect.
+4. Review the detected app and detection method in the current result or recent activity.
+
+Screen Recording access is optional, but it improves detection for background-style apps that show a window without becoming active. After changing either permission, macOS may require an app restart.
+
+Hotkey Finder runs as a regular windowed app without a menu bar item. Closing its last window quits the app.
+
+## Privacy and Permissions
+
+Hotkey Finder uses a listen-only event tap and never changes or blocks keystrokes. Input Monitoring is active only while its window is in front.
+
+Screen Recording access is used only to compare window metadata such as identifiers, owning processes, and sizes. Hotkey Finder does not capture or save screen content. Detection history stays in memory and is cleared when the app quits.
+
 ## Language
 
-Open **Hotkey Finder > Settings…** or press `⌘,` to choose one of the following:
-
-- Follow System
-- English
-- Simplified Chinese
-- Traditional Chinese
-- Japanese
-- Thai
-
-When following the system, Settings shows the language that Hotkey Finder will use. Unsupported system languages fall back to English. A language change takes effect after the app restarts.
-
-## Manual Verification
-
-1. Run the app from Xcode and allow Input Monitoring. If macOS asks you to restart the app, quit and run it again.
-2. Keep Hotkey Finder in front and press a local shortcut such as `⌘P`; verify that the result says no responding app was detected.
-3. Optionally allow Screen Recording and restart when prompted. This enables window-based matching for background-style apps such as Alfred.
-4. Press a known global shortcut for Spotlight, Raycast, or Alfred; verify the target app's name, icon, bundle identifier, PID, and detection method.
-5. Press keys from F1 through F20 and verify that records are created. Holding a key should not create repeated records.
-6. Switch to another app and verify detection pauses, then return to Hotkey Finder and verify it resumes.
-7. Open Settings from both the app menu and `⌘,`, change the language, restart, and verify both windows use the selected language.
-8. Create more than 20 records and verify only the latest 20 remain. Clear History should remove them all.
+Open **Hotkey Finder > Settings…** or press `⌘,` to choose Follow System, English, Simplified Chinese, Traditional Chinese, Japanese, or Thai. Unsupported system languages fall back to English. Language changes take effect after restarting the app.
 
 ## Known Limitations
 
-- This version performs live detection only. It does not scan app menus, system shortcut settings, Karabiner, skhd, or other configuration files.
-- Hotkey Finder uses a session event tap to observe keyboard events early. Events consumed by the system or a driver before reaching the user session may still be undetectable.
-- Public macOS APIs cannot reliably identify a shortcut owner when there is no app activation, valid target PID, or visible window change.
-- Window detection infers the target by comparing windows before and after a shortcut. Simultaneous window creation by multiple apps can produce a false match.
-- Only shortcuts containing `⌘`, `⌥`, `⌃`, or `⇧`, plus F1–F20, are recorded. Plain characters, modifier-only events, and media keys are ignored.
-- Detection history is stored in memory and is cleared when the app quits.
+- Hotkey Finder performs live detection only. It does not scan app menus, System Settings, Karabiner, skhd, or other shortcut configuration files.
+- Events consumed by the system or a driver before reaching the user session may be undetectable.
+- A shortcut cannot be identified reliably if it exposes no target PID, activates no app, and creates no visible window.
+- Window-based detection is inferred from before-and-after metadata; simultaneous window creation by multiple apps can produce a false match.
+- Plain characters, modifier-only events, and media keys are ignored.
+
+## Development Verification
+
+<details>
+<summary>Manual verification checklist</summary>
+
+1. Run the app and grant Input Monitoring access. If macOS requests a restart, quit and reopen the app.
+2. Keep Hotkey Finder in front and press a local shortcut such as `⌘P`; verify that no external responding app is reported.
+3. Optionally grant Screen Recording access and restart. Verify window-based matching with an app such as Alfred.
+4. Press a known global shortcut for Spotlight, Raycast, or Alfred; verify the app name, icon, bundle identifier, PID, and detection method.
+5. Press F1 through F20 and verify records are created. Hold a key and verify repeated records are not created.
+6. Switch to another app and verify detection pauses, then return and verify it resumes.
+7. Change the language from both the app menu and `⌘,`, restart, and verify both windows use the selected language.
+8. Create more than 20 records and verify only the latest 20 remain. Clear History should remove them all.
+
+</details>
