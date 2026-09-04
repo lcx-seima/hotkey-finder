@@ -21,6 +21,7 @@
 		B0000000000000000000000C /* LanguageSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000000E /* LanguageSettingsView.swift */; };
 		B0000000000000000000000D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000000F /* Localizable.xcstrings */; };
 		B0000000000000000000000E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000010 /* InfoPlist.xcstrings */; };
+		B0000000000000000000000F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000013 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		C00000000000000000000010 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		C00000000000000000000011 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		C00000000000000000000012 /* Local.xcconfig.example */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig.example; sourceTree = "<group>"; };
+		C00000000000000000000013 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 		D00000000000000000000002 /* HotkeyFinder */ = {
 			isa = PBXGroup;
 			children = (
+				C00000000000000000000013 /* Assets.xcassets */,
 				C0000000000000000000000B /* Info.plist */,
 				C00000000000000000000010 /* InfoPlist.xcstrings */,
 				C0000000000000000000000F /* Localizable.xcstrings */,
@@ -205,6 +208,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0000000000000000000000F /* Assets.xcassets in Resources */,
 				B0000000000000000000000E /* InfoPlist.xcstrings in Resources */,
 				B0000000000000000000000D /* Localizable.xcstrings in Resources */,
 			);
@@ -353,6 +357,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C00000000000000000000011 /* Project.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -376,6 +381,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C00000000000000000000011 /* Project.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
