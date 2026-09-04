@@ -11,6 +11,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             name: NSWorkspace.didActivateApplicationNotification,
             object: nil
         )
+        NSWorkspace.shared.notificationCenter.addObserver(
+            self,
+            selector: #selector(workspaceDidTerminate(_:)),
+            name: NSWorkspace.didTerminateApplicationNotification,
+            object: nil
+        )
 
         DispatchQueue.main.async {
             self.removeEmptyTopLevelMenus()
@@ -45,5 +51,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         viewModel?.workspaceDidActivate(application)
+    }
+
+    @objc
+    private func workspaceDidTerminate(_ notification: Notification) {
+        viewModel?.workspaceDidTerminateApplication()
     }
 }

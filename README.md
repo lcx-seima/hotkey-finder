@@ -19,6 +19,7 @@ Hotkey Finder is a macOS alternative to [ShortcutDetective](https://www.irradiat
 
 - Identifies an app from the keyboard event target, app activation, or a newly visible window
 - Shows the app name, icon, bundle identifier, PID, and detection method
+- Force-quits an identified app after an explicit confirmation
 - Records shortcuts with modifiers and function keys from F1 through F20
 - Keeps the latest 20 results and ignores key-repeat noise
 - Pauses detection whenever Hotkey Finder is not the active app
@@ -106,9 +107,10 @@ Open **Hotkey Finder > Settings…** or press `⌘,` to choose Follow System, En
 2. Keep Hotkey Finder in front and press a local shortcut such as `⌘P`; verify that no external responding app is reported.
 3. Optionally grant Screen Recording access and restart. Verify window-based matching with an app such as Alfred.
 4. Press a known global shortcut for Spotlight, Raycast, or Alfred; verify the app name, icon, bundle identifier, PID, and detection method.
-5. Press F1 through F20 and verify records are created. Hold a key and verify repeated records are not created.
-6. Switch to another app and verify detection pauses, then return and verify it resumes.
-7. Change the language from both the app menu and `⌘,`, verify the shortcut does not change the current result or history, then restart and verify both windows use the selected language.
-8. Create more than 20 records and verify only the latest 20 remain. Clear History should remove them all.
+5. Use an app with no unsaved work to verify Kill can be canceled, requires confirmation, then force-quits the app and marks matching current and history results as exited.
+6. Press F1 through F20 and verify records are created. Hold a key and verify repeated records are not created.
+7. Switch to another app and verify detection pauses, then return and verify it resumes.
+8. Change the language from both the app menu and `⌘,`, verify the shortcut does not change the current result or history, then restart and verify both windows use the selected language.
+9. Create more than 20 records and verify only the latest 20 remain. Clear History should remove them all.
 
 </details>

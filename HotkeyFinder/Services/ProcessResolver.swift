@@ -16,8 +16,13 @@ struct ProcessResolver {
             pid: pid,
             name: application.localizedName ?? fallbackName,
             bundleIdentifier: application.bundleIdentifier,
-            icon: application.icon
+            icon: application.icon,
+            runningApplication: application,
+            instanceID: ApplicationInstanceID(
+                pid: pid,
+                bundleIdentifier: application.bundleIdentifier,
+                launchDate: application.launchDate
+            )
         )
     }
 }
-

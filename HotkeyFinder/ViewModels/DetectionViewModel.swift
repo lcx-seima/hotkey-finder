@@ -8,6 +8,10 @@ final class DetectionViewModel: ObservableObject {
     @Published private(set) var hasInputMonitoringPermission = false
     @Published private(set) var hasScreenCapturePermission = false
     @Published private(set) var records: [DetectionRecord] = []
+    @Published private(set) var applicationTerminationStates: [
+        ApplicationInstanceID: ApplicationTerminationState
+    ] = [:]
+    @Published private(set) var applicationTerminationError: ApplicationTerminationError?
 
     var latestRecord: DetectionRecord? {
         records.first
@@ -15,6 +19,7 @@ final class DetectionViewModel: ObservableObject {
 
     private let eventTapManager = EventTapManager()
     private let processResolver = ProcessResolver()
+    private let applicationTerminationService = ApplicationTerminationService()
     private let windowObservationService = WindowObservationService()
     private var isApplicationActive = false
     private var pendingEvent: CapturedHotkeyEvent?
@@ -94,6 +99,56 @@ final class DetectionViewModel: ObservableObject {
         windowSamplingTask = nil
         pendingEvent = nil
         records.removeAll()
+        applicationTerminationStates.removeAll()
+    }
+
+    func terminationState(for record: DetectionRecord) -> ApplicationTerminationState? {
+        guard case let .application(application) = record.outcome else {
+            return nil
+        }
+
+        return applicationTerminationStates[application.instanceID]
+            ?? (application.runningApplication.isTerminated ? .terminated : .running)
+    }
+
+    func forceTerminate(_ application: DetectedApplication) async {
+        let instanceID = application.instanceID
+        guard applicationTerminationStates[instanceID] != .terminating else {
+            return
+        }
+
+        applicationTerminationStates[instanceID] = .terminating
+        let result = await applicationTerminationService.forceTerminate(application)
+
+        switch result {
+        case .terminated, .alreadyTerminated:
+            applicationTerminationStates[instanceID] = .terminated
+        case .rejected:
+            handleTerminationFailure(.rejected, for: application)
+        case .timedOut:
+            handleTerminationFailure(.timedOut, for: application)
+        }
+    }
+
+    func dismissApplicationTerminationError() {
+        applicationTerminationError = nil
+    }
+
+    func workspaceDidTerminateApplication() {
+        var updatedStates = applicationTerminationStates
+
+        for record in records {
+            guard case let .application(application) = record.outcome,
+                  application.runningApplication.isTerminated else {
+                continue
+            }
+
+            updatedStates[application.instanceID] = .terminated
+        }
+
+        if updatedStates != applicationTerminationStates {
+            applicationTerminationStates = updatedStates
+        }
     }
 
     func workspaceDidActivate(_ application: NSRunningApplication) {
@@ -314,6 +369,14 @@ final class DetectionViewModel: ObservableObject {
         outcome: DetectionOutcome,
         method: DetectionMethod?
     ) {
+        if case let .application(application) = outcome {
+            if application.runningApplication.isTerminated {
+                applicationTerminationStates[application.instanceID] = .terminated
+            } else if applicationTerminationStates[application.instanceID] == nil {
+                applicationTerminationStates[application.instanceID] = .running
+            }
+        }
+
         records.insert(
             DetectionRecord(
                 detectedAt: event.detectedAt,
@@ -328,5 +391,31 @@ final class DetectionViewModel: ObservableObject {
         if records.count > 20 {
             records.removeLast(records.count - 20)
         }
+
+        let retainedInstanceIDs: Set<ApplicationInstanceID> = Set(records.compactMap { record in
+            guard case let .application(application) = record.outcome else {
+                return nil
+            }
+            return application.instanceID
+        })
+        applicationTerminationStates = applicationTerminationStates.filter {
+            retainedInstanceIDs.contains($0.key) || $0.value == .terminating
+        }
+    }
+
+    private func handleTerminationFailure(
+        _ failure: ApplicationTerminationFailure,
+        for application: DetectedApplication
+    ) {
+        if application.runningApplication.isTerminated {
+            applicationTerminationStates[application.instanceID] = .terminated
+            return
+        }
+
+        applicationTerminationStates[application.instanceID] = .running
+        applicationTerminationError = ApplicationTerminationError(
+            applicationName: application.name,
+            failure: failure
+        )
     }
 }

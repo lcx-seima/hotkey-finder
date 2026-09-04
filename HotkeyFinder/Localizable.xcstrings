@@ -26,6 +26,22 @@
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "App 啟用" } }
       }
     },
+    "App is no longer running." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "アプリはすでに終了しています。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "แอปไม่ได้ทำงานอยู่แล้ว" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "App 已退出。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "App 已結束。" } }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "キャンセル" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ยกเลิก" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "取消" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "取消" } }
+      }
+    },
     "Checking Permissions" : {
       "localizations" : {
         "ja" : { "stringUnit" : { "state" : "translated", "value" : "権限を確認中" } },
@@ -48,6 +64,14 @@
         "th" : { "stringUnit" : { "state" : "translated", "value" : "ล้างประวัติ" } },
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "清空记录" } },
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "清除記錄" } }
+      }
+    },
+    "Couldn’t Force Quit" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "強制終了できませんでした" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ไม่สามารถบังคับปิดได้" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "无法强制退出" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "無法強制結束" } }
       }
     },
     "Couldn’t Restart" : {
@@ -142,12 +166,36 @@
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "事件目標" } }
       }
     },
+    "Exited" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "終了済み" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "ปิดแล้ว" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已退出" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "已結束" } }
+      }
+    },
     "Follow System" : {
       "localizations" : {
         "ja" : { "stringUnit" : { "state" : "translated", "value" : "システム設定に合わせる" } },
         "th" : { "stringUnit" : { "state" : "translated", "value" : "ตามภาษาของระบบ" } },
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "跟随系统" } },
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "依照系統設定" } }
+      }
+    },
+    "Force Quit" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "強制終了" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "บังคับปิด" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "强制退出" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "強制結束" } }
+      }
+    },
+    "Force Quit “%@”?" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "“%@”を強制終了しますか？" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "บังคับปิด “%@” หรือไม่" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "要强制退出“%@”吗？" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "要強制結束「%@」嗎？" } }
       }
     },
     "Forward Delete" : {
@@ -229,6 +277,30 @@
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "按鍵碼 %d" } }
       }
     },
+    "Kill" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "強制終了" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "บังคับปิด" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "强制退出" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "強制結束" } }
+      }
+    },
+    "Kill %@" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%@を強制終了" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "บังคับปิด %@" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "强制退出 %@" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "強制結束 %@" } }
+      }
+    },
+    "Killing…" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "強制終了中…" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "กำลังบังคับปิด…" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "正在强制退出…" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "正在強制結束…" } }
+      }
+    },
     "Language" : {
       "localizations" : {
         "ja" : { "stringUnit" : { "state" : "translated", "value" : "言語" } },
@@ -243,6 +315,14 @@
         "th" : { "stringUnit" : { "state" : "translated", "value" : "ไว้ภายหลัง" } },
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "稍后" } },
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "稍後" } }
+      }
+    },
+    "macOS rejected the request to force quit “%@”." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "macOS が“%@”の強制終了要求を拒否しました。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "macOS ปฏิเสธคำขอบังคับปิด “%@”" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "macOS 拒绝了强制退出“%@”的请求。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "macOS 拒絕了強制結束「%@」的要求。" } }
       }
     },
     "New Window" : {
@@ -395,6 +475,14 @@
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "Tab" } }
       }
     },
+    "The app will close immediately. Unsaved changes will be lost." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "アプリはただちに終了します。保存していない変更は失われます。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "แอปจะปิดทันที การเปลี่ยนแปลงที่ยังไม่ได้บันทึกจะสูญหาย" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "App 将立即退出，未保存的更改将会丢失。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "App 將立即結束，未儲存的更改將會遺失。" } }
+      }
+    },
     "The event is still targeting Hotkey Finder." : {
       "localizations" : {
         "ja" : { "stringUnit" : { "state" : "translated", "value" : "イベントの送信先は引き続き Hotkey Finder です。" } },
@@ -449,6 +537,14 @@
         "th" : { "stringUnit" : { "state" : "translated", "value" : "กำลังรอปุ่มลัด" } },
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "等待快捷键" } },
         "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "等待快速鍵" } }
+      }
+    },
+    "“%@” is still running after the force quit request." : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "強制終了を要求した後も“%@”が実行中です。" } },
+        "th" : { "stringUnit" : { "state" : "translated", "value" : "“%@” ยังคงทำงานหลังจากส่งคำขอบังคับปิด" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "强制退出请求发出后，“%@”仍在运行。" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "強制結束要求送出後，「%@」仍在執行。" } }
       }
     }
   },

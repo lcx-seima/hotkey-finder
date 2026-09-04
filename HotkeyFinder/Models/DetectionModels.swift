@@ -24,8 +24,50 @@ struct DetectedApplication: Identifiable {
     let name: String
     let bundleIdentifier: String?
     let icon: NSImage?
+    let runningApplication: NSRunningApplication
+    let instanceID: ApplicationInstanceID
 
     var id: pid_t { pid }
+}
+
+struct ApplicationInstanceID: Hashable {
+    let pid: pid_t
+    let bundleIdentifier: String?
+    let launchDate: Date?
+}
+
+enum ApplicationTerminationState: Equatable {
+    case running
+    case terminating
+    case terminated
+}
+
+enum ApplicationTerminationFailure: Equatable {
+    case rejected
+    case timedOut
+}
+
+struct ApplicationTerminationError: Identifiable {
+    let id = UUID()
+    let applicationName: String
+    let failure: ApplicationTerminationFailure
+
+    var message: String {
+        let format: String
+
+        switch failure {
+        case .rejected:
+            format = String(
+                localized: "macOS rejected the request to force quit “%@”."
+            )
+        case .timedOut:
+            format = String(
+                localized: "“%@” is still running after the force quit request."
+            )
+        }
+
+        return String.localizedStringWithFormat(format, applicationName)
+    }
 }
 
 enum DetectionOutcome {

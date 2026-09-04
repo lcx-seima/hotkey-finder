@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var viewModel: DetectionViewModel
+    @State private var applicationPendingForceQuit: DetectedApplication?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -23,7 +24,13 @@ struct ContentView: View {
                         }
                     }
 
-                    LatestResultCard(record: viewModel.latestRecord)
+                    LatestResultCard(
+                        record: viewModel.latestRecord,
+                        terminationState: viewModel.latestRecord.flatMap {
+                            viewModel.terminationState(for: $0)
+                        },
+                        onKill: requestForceQuit
+                    )
                     history
                 }
                 .padding(24)
@@ -31,6 +38,29 @@ struct ContentView: View {
         }
         .frame(minWidth: 600, minHeight: 480)
         .background(Color(nsColor: .windowBackgroundColor))
+        .alert(
+            forceQuitConfirmationTitle,
+            isPresented: forceQuitConfirmationBinding,
+            presenting: applicationPendingForceQuit
+        ) { application in
+            Button("Cancel", role: .cancel) {}
+            Button("Force Quit", role: .destructive) {
+                Task {
+                    await viewModel.forceTerminate(application)
+                }
+            }
+        } message: { _ in
+            Text("The app will close immediately. Unsaved changes will be lost.")
+        }
+        .alert("Couldn’t Force Quit", isPresented: forceQuitErrorBinding) {
+            Button("OK", role: .cancel) {
+                viewModel.dismissApplicationTerminationError()
+            }
+        } message: {
+            if let error = viewModel.applicationTerminationError {
+                Text(verbatim: error.message)
+            }
+        }
     }
 
     private var header: some View {
@@ -82,7 +112,11 @@ struct ContentView: View {
             } else {
                 VStack(spacing: 0) {
                     ForEach(Array(viewModel.records.enumerated()), id: \.element.id) { index, record in
-                        HistoryRow(record: record)
+                        HistoryRow(
+                            record: record,
+                            terminationState: viewModel.terminationState(for: record),
+                            onKill: requestForceQuit
+                        )
                         if index < viewModel.records.count - 1 {
                             Divider()
                                 .padding(.leading, 52)
@@ -96,6 +130,40 @@ struct ContentView: View {
                 }
             }
         }
+    }
+
+    private var forceQuitConfirmationTitle: String {
+        let format = String(localized: "Force Quit “%@”?")
+        return String.localizedStringWithFormat(
+            format,
+            applicationPendingForceQuit?.name ?? ""
+        )
+    }
+
+    private var forceQuitConfirmationBinding: Binding<Bool> {
+        Binding(
+            get: { applicationPendingForceQuit != nil },
+            set: { isPresented in
+                if !isPresented {
+                    applicationPendingForceQuit = nil
+                }
+            }
+        )
+    }
+
+    private var forceQuitErrorBinding: Binding<Bool> {
+        Binding(
+            get: { viewModel.applicationTerminationError != nil },
+            set: { isPresented in
+                if !isPresented {
+                    viewModel.dismissApplicationTerminationError()
+                }
+            }
+        )
+    }
+
+    private func requestForceQuit(_ application: DetectedApplication) {
+        applicationPendingForceQuit = application
     }
 }
 
@@ -282,6 +350,8 @@ private struct FailureCard: View {
 
 private struct LatestResultCard: View {
     let record: DetectionRecord?
+    let terminationState: ApplicationTerminationState?
+    let onKill: (DetectedApplication) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -294,7 +364,12 @@ private struct LatestResultCard: View {
 
                     VStack(alignment: .leading, spacing: 6) {
                         ShortcutLabel(shortcut: record.shortcut, style: .prominent)
-                        OutcomeDetails(outcome: record.outcome, prominent: true)
+                        OutcomeDetails(
+                            outcome: record.outcome,
+                            prominent: true,
+                            terminationState: terminationState,
+                            onKill: onKill
+                        )
                         if let method = record.method {
                             DetectionMethodBadge(method: method)
                         }
@@ -335,6 +410,8 @@ private struct LatestResultCard: View {
 
 private struct HistoryRow: View {
     let record: DetectionRecord
+    let terminationState: ApplicationTerminationState?
+    let onKill: (DetectedApplication) -> Void
 
     var body: some View {
         HStack(spacing: 12) {
@@ -343,7 +420,12 @@ private struct HistoryRow: View {
             ShortcutLabel(shortcut: record.shortcut, style: .compact)
                 .frame(width: 112, alignment: .leading)
 
-            OutcomeDetails(outcome: record.outcome, prominent: false)
+            OutcomeDetails(
+                outcome: record.outcome,
+                prominent: false,
+                terminationState: terminationState,
+                onKill: onKill
+            )
 
             Spacer(minLength: 8)
 
@@ -498,6 +580,8 @@ private struct ResultIcon: View {
 private struct OutcomeDetails: View {
     let outcome: DetectionOutcome
     let prominent: Bool
+    let terminationState: ApplicationTerminationState?
+    let onKill: (DetectedApplication) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: prominent ? 3 : 1) {
@@ -507,10 +591,22 @@ private struct OutcomeDetails: View {
                     .font(prominent ? .title3.weight(.semibold) : .body)
                     .lineLimit(1)
 
-                Text(metadata(for: application))
-                    .font(.caption.monospaced())
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
+                HStack(spacing: 8) {
+                    Text(metadata(for: application))
+                        .font(.caption.monospaced())
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+
+                    if let terminationState {
+                        ApplicationKillControl(
+                            application: application,
+                            state: terminationState,
+                            prominent: prominent,
+                            onKill: onKill
+                        )
+                        .layoutPriority(1)
+                    }
+                }
             case .noExternalTarget:
                 Text("No Responding App Detected")
                     .font(prominent ? .title3.weight(.semibold) : .body)
@@ -542,5 +638,86 @@ private struct OutcomeDetails: View {
     private func metadata(for application: DetectedApplication) -> String {
         let identifier = application.bundleIdentifier ?? String(localized: "No Bundle ID")
         return "\(identifier)  ·  PID \(application.pid)"
+    }
+}
+
+private struct ApplicationKillControl: View {
+    let application: DetectedApplication
+    let state: ApplicationTerminationState
+    let prominent: Bool
+    let onKill: (DetectedApplication) -> Void
+
+    var body: some View {
+        switch state {
+        case .running:
+            killButton
+        case .terminating:
+            progressIndicator
+        case .terminated:
+            terminatedIndicator
+        }
+    }
+
+    @ViewBuilder
+    private var killButton: some View {
+        if prominent {
+            Button {
+                onKill(application)
+            } label: {
+                Label("Kill", systemImage: "xmark.octagon")
+            }
+            .buttonStyle(.borderless)
+            .controlSize(.small)
+            .foregroundStyle(.red)
+            .help(forceQuitAccessibilityLabel)
+        } else {
+            Button {
+                onKill(application)
+            } label: {
+                Image(systemName: "xmark.octagon")
+            }
+            .buttonStyle(.borderless)
+            .foregroundStyle(.red)
+            .accessibilityLabel(Text(verbatim: forceQuitAccessibilityLabel))
+            .help(forceQuitAccessibilityLabel)
+        }
+    }
+
+    @ViewBuilder
+    private var progressIndicator: some View {
+        if prominent {
+            HStack(spacing: 5) {
+                ProgressView()
+                    .controlSize(.small)
+                Text("Killing…")
+                    .font(.caption)
+            }
+            .foregroundStyle(.secondary)
+        } else {
+            ProgressView()
+                .controlSize(.small)
+                .frame(width: 16, height: 16)
+                .accessibilityLabel("Killing…")
+                .help(String(localized: "Killing…"))
+        }
+    }
+
+    @ViewBuilder
+    private var terminatedIndicator: some View {
+        if prominent {
+            Label("Exited", systemImage: "checkmark.circle")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        } else {
+            Image(systemName: "checkmark.circle")
+                .foregroundStyle(.secondary)
+                .accessibilityLabel("App is no longer running.")
+                .help(String(localized: "App is no longer running."))
+        }
+    }
+
+    private var forceQuitAccessibilityLabel: String {
+        let format = String(localized: "Kill %@")
+        return String.localizedStringWithFormat(format, application.name)
     }
 }
