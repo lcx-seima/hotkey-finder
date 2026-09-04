@@ -293,9 +293,7 @@ private struct LatestResultCard: View {
                     ResultIcon(outcome: record.outcome, size: 58)
 
                     VStack(alignment: .leading, spacing: 6) {
-                        Text(record.shortcut)
-                            .font(.system(size: 28, weight: .bold, design: .rounded))
-                            .monospaced()
+                        ShortcutLabel(shortcut: record.shortcut, style: .prominent)
                         OutcomeDetails(outcome: record.outcome, prominent: true)
                         if let method = record.method {
                             DetectionMethodBadge(method: method)
@@ -342,10 +340,8 @@ private struct HistoryRow: View {
         HStack(spacing: 12) {
             ResultIcon(outcome: record.outcome, size: 36)
 
-            Text(record.shortcut)
-                .font(.body.weight(.semibold).monospaced())
+            ShortcutLabel(shortcut: record.shortcut, style: .compact)
                 .frame(width: 112, alignment: .leading)
-                .lineLimit(1)
 
             OutcomeDetails(outcome: record.outcome, prominent: false)
 
@@ -363,6 +359,92 @@ private struct HistoryRow: View {
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 11)
+    }
+}
+
+private struct ShortcutLabel: View {
+    enum Style {
+        case prominent
+        case compact
+
+        var keyFont: Font {
+            switch self {
+            case .prominent:
+                .system(size: 28, weight: .bold, design: .rounded)
+            case .compact:
+                .system(.body, design: .rounded, weight: .semibold)
+            }
+        }
+
+        var modifierFont: Font {
+            switch self {
+            case .prominent:
+                .system(size: 25, weight: .bold)
+            case .compact:
+                .system(.body, weight: .semibold)
+            }
+        }
+
+        var modifierFrameSize: CGFloat {
+            switch self {
+            case .prominent:
+                27
+            case .compact:
+                15
+            }
+        }
+
+        var spacing: CGFloat {
+            switch self {
+            case .prominent:
+                4
+            case .compact:
+                3
+            }
+        }
+    }
+
+    let shortcut: String
+    let style: Style
+
+    private static let modifierSymbolNames: [Character: String] = [
+        "⌃": "control",
+        "⌥": "option",
+        "⇧": "shift",
+        "⌘": "command",
+    ]
+
+    var body: some View {
+        HStack(spacing: style.spacing) {
+            ForEach(Array(components.modifiers.enumerated()), id: \.offset) { _, symbolName in
+                Image(systemName: symbolName)
+                    .font(style.modifierFont)
+                    .frame(
+                        width: style.modifierFrameSize,
+                        height: style.modifierFrameSize
+                    )
+            }
+
+            Text(verbatim: components.key)
+                .font(style.keyFont)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: shortcut))
+    }
+
+    private var components: (modifiers: [String], key: String) {
+        var remainder = shortcut[...]
+        var modifiers: [String] = []
+
+        while let character = remainder.first,
+              let symbolName = Self.modifierSymbolNames[character] {
+            modifiers.append(symbolName)
+            remainder.removeFirst()
+        }
+
+        return (modifiers, String(remainder))
     }
 }
 
