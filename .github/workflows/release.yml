@@ -13,12 +13,13 @@ concurrency:
 
 env:
   APP_NAME: Hotkey Finder
+  APP_BUNDLE_ID: com.lcxseima.HotkeyFinder
   DERIVED_DATA_PATH: build/DerivedData
   RELEASE_ZIP: dist/Hotkey-Finder.zip
 
 jobs:
   release:
-    name: Build and publish unsigned app
+    name: Build and publish app
     runs-on: macos-26
     timeout-minutes: 20
 
@@ -54,7 +55,7 @@ jobs:
             exit 1
           fi
 
-      - name: Build unsigned universal app
+      - name: Build universal app
         shell: bash
         run: |
           set -euo pipefail
@@ -69,6 +70,35 @@ jobs:
             ARCHS='arm64 x86_64' \
             build
 
+      - name: Ad-hoc sign app bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          app_path="$DERIVED_DATA_PATH/Build/Products/Release/$APP_NAME.app"
+
+          test -d "$app_path"
+          codesign \
+            --force \
+            --sign - \
+            --identifier "$APP_BUNDLE_ID" \
+            --options runtime \
+            "$app_path"
+          codesign --verify --deep --strict --verbose=2 "$app_path"
+
+          signature_info="$(codesign --display --verbose=2 "$app_path" 2>&1)"
+          actual_identifier="$(awk -F= '/^Identifier=/ { print $2; exit }' <<< "$signature_info")"
+          if [[ "$actual_identifier" != "$APP_BUNDLE_ID" ]]; then
+            echo "::error::Expected signing identifier $APP_BUNDLE_ID, found $actual_identifier."
+            exit 1
+          fi
+
+          designated_requirement="$(codesign --display --requirements - "$app_path" 2>&1)"
+          if [[ "$designated_requirement" != *'designated =>'* ]]; then
+            echo "::error::The signed app does not have a designated requirement."
+            exit 1
+          fi
+
       - name: Verify and package release asset
         shell: bash
         run: |
@@ -77,15 +107,9 @@ jobs:
           app_path="$DERIVED_DATA_PATH/Build/Products/Release/$APP_NAME.app"
           executable_path="$app_path/Contents/MacOS/$APP_NAME"
 
-          test -d "$app_path"
           architectures="$(lipo -archs "$executable_path")"
           if [[ "$architectures" != *arm64* || "$architectures" != *x86_64* ]]; then
             echo "::error::Expected a universal app, found architectures: $architectures"
-            exit 1
-          fi
-
-          if codesign --verify "$app_path" 2>/dev/null; then
-            echo "::error::Expected an unsigned app, but a valid code signature was found."
             exit 1
           fi
 
@@ -110,7 +134,7 @@ jobs:
             "$RELEASE_ZIP.sha256#SHA-256 checksum" \
             --verify-tag \
             --title "Hotkey Finder $GITHUB_REF_NAME" \
-            --notes 'This automated build is unsigned and not notarized. Read the installation notice in the README before opening it.' \
+            --notes 'This automated build is ad-hoc signed, but it is not signed with an Apple Developer ID or notarized. Read the installation notice in the README before opening it.' \
             --generate-notes \
             --latest
 

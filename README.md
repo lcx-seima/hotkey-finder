@@ -49,7 +49,7 @@ Detection is best-effort because macOS does not expose a public API that reliabl
 Download the latest build from [GitHub Releases](https://github.com/lcx-seima/hotkey-finder/releases/latest), or use the [direct download link](https://github.com/lcx-seima/hotkey-finder/releases/latest/download/Hotkey-Finder.zip).
 
 > [!WARNING]
-> The downloadable app is currently **unsigned and not notarized**. macOS cannot verify its developer or check it through Apple's notarization service. Only continue if you downloaded it from this repository and accept that limitation.
+> The downloadable app is currently **ad-hoc signed, not Developer ID signed, and not notarized**. macOS cannot verify its developer or check it through Apple's notarization service. Only continue if you downloaded it from this repository and accept that limitation. Installing an update may require granting privacy permissions again.
 
 To open the app for the first time:
 
@@ -121,7 +121,7 @@ Open **Hotkey Finder > Settings…** or press `⌘,` to choose Follow System, En
 
 ## Development Verification
 
-Maintainers can find the unsigned automated publishing setup in [docs/RELEASING.md](docs/RELEASING.md).
+Maintainers can find the ad-hoc-signed automated publishing setup in [docs/RELEASING.md](docs/RELEASING.md).
 
 <details>
 <summary>Manual verification checklist</summary>

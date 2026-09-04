@@ -49,7 +49,7 @@ Hotkey Finder 是一款 macOS 上的 [ShortcutDetective](https://www.irradiateds
 前往 [GitHub Releases](https://github.com/lcx-seima/hotkey-finder/releases/latest) 下载最新版本，也可以使用[固定直链](https://github.com/lcx-seima/hotkey-finder/releases/latest/download/Hotkey-Finder.zip)。
 
 > [!WARNING]
-> 当前下载包**没有开发者签名，也没有经过 Apple 公证**。macOS 无法验证开发者身份，也无法通过 Apple 公证服务检查这个 App。请仅在确认安装包来自本仓库并接受这一限制时继续。
+> 当前下载包**仅使用 ad-hoc 签名，没有 Developer ID 签名，也没有经过 Apple 公证**。macOS 无法验证开发者身份，也无法通过 Apple 公证服务检查这个 App。请仅在确认安装包来自本仓库并接受这一限制时继续。安装新版本后可能需要重新授予隐私权限。
 
 首次打开 App：
 
@@ -121,7 +121,7 @@ Hotkey Finder 使用只读事件监听，不会修改或拦截按键。只有当
 
 ## 开发验证
 
-维护者可以在 [docs/RELEASING.md](docs/RELEASING.md) 查看无签名自动发布配置。
+维护者可以在 [docs/RELEASING.md](docs/RELEASING.md) 查看使用 ad-hoc 签名的自动发布配置。
 
 <details>
 <summary>展开人工验证清单</summary>
