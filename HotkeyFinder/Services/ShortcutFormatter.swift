@@ -27,6 +27,16 @@ enum ShortcutFormatter {
         hasSupportedModifier(flags) || functionKeyCodes.contains(keyCode)
     }
 
+    static func isSettingsShortcut(keyCode: CGKeyCode, flags: CGEventFlags) -> Bool {
+        guard keyCode == 43, flags.contains(.maskCommand) else {
+            return false
+        }
+
+        return !flags.contains(.maskControl)
+            && !flags.contains(.maskAlternate)
+            && !flags.contains(.maskShift)
+    }
+
     static func string(keyCode: CGKeyCode, flags: CGEventFlags) -> String {
         var components: [String] = []
 

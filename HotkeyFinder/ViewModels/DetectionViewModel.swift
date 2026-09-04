@@ -160,6 +160,13 @@ final class DetectionViewModel: ObservableObject {
     }
 
     private func record(_ event: CapturedHotkeyEvent) {
+        guard !ShortcutFormatter.isSettingsShortcut(
+            keyCode: event.keyCode,
+            flags: event.flags
+        ) else {
+            return
+        }
+
         resolvePendingAsNoExternalTarget()
 
         let currentPID = ProcessInfo.processInfo.processIdentifier

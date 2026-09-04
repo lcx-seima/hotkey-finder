@@ -108,7 +108,7 @@ Open **Hotkey Finder > Settings…** or press `⌘,` to choose Follow System, En
 4. Press a known global shortcut for Spotlight, Raycast, or Alfred; verify the app name, icon, bundle identifier, PID, and detection method.
 5. Press F1 through F20 and verify records are created. Hold a key and verify repeated records are not created.
 6. Switch to another app and verify detection pauses, then return and verify it resumes.
-7. Change the language from both the app menu and `⌘,`, restart, and verify both windows use the selected language.
+7. Change the language from both the app menu and `⌘,`, verify the shortcut does not change the current result or history, then restart and verify both windows use the selected language.
 8. Create more than 20 records and verify only the latest 20 remain. Clear History should remove them all.
 
 </details>
