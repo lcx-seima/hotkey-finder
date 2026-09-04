@@ -44,9 +44,30 @@ Detection is best-effort because macOS does not expose a public API that reliabl
 - Input Monitoring access
 - Optional Screen Recording access for window-based detection
 
+## Download
+
+Download the latest build from [GitHub Releases](https://github.com/lcx-seima/hotkey-finder/releases/latest), or use the [direct download link](https://github.com/lcx-seima/hotkey-finder/releases/latest/download/Hotkey-Finder.zip).
+
+> [!WARNING]
+> The downloadable app is currently **unsigned and not notarized**. macOS cannot verify its developer or check it through Apple's notarization service. Only continue if you downloaded it from this repository and accept that limitation.
+
+To open the app for the first time:
+
+1. Unzip it, move **Hotkey Finder.app** to `/Applications`, and try to open it once.
+2. After macOS blocks it, open **System Settings > Privacy & Security**.
+3. Scroll to **Security**, click **Open Anyway** for Hotkey Finder, authenticate, then confirm **Open**.
+
+This creates an exception for this app; it does not require disabling Gatekeeper globally. The **Open Anyway** button is available for about an hour after a blocked launch attempt. See [Apple's safety guidance](https://support.apple.com/en-us/102445) before overriding the warning.
+
+For an integrity check, download `Hotkey-Finder.zip.sha256` from the same release and run:
+
+```bash
+shasum -a 256 -c Hotkey-Finder.zip.sha256
+```
+
 ## Build and Run
 
-Prebuilt downloads are not available yet. To run Hotkey Finder from Xcode:
+To run Hotkey Finder from Xcode:
 
 ```bash
 git clone https://github.com/lcx-seima/hotkey-finder.git
@@ -99,6 +120,8 @@ Open **Hotkey Finder > Settings…** or press `⌘,` to choose Follow System, En
 - Plain characters, modifier-only events, and media keys are ignored.
 
 ## Development Verification
+
+Maintainers can find the unsigned automated publishing setup in [docs/RELEASING.md](docs/RELEASING.md).
 
 <details>
 <summary>Manual verification checklist</summary>
