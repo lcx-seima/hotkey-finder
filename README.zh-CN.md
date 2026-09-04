@@ -6,16 +6,14 @@
 </div>
 
 <div align="center">
-  <img src="docs/assets/demo.gif" width="400" alt="Hotkey Finder 侦测键盘快捷键响应 App 的演示">
+  <img src="docs/assets/demo.gif" width="500" alt="Hotkey Finder 侦测键盘快捷键响应 App 的演示">
 </div>
 
 Hotkey Finder 用来回答一个看似简单、实际却很难排查的问题：**刚才是哪个 App 响应了这个快捷键？** 将 Hotkey Finder 保持在前台，按下想要检查的快捷键，它会综合多种 macOS 信号，找出最有可能响应快捷键的 App。
 
-## ShortcutDetective 替代工具
-
-Hotkey Finder 是一款 macOS 上的 [ShortcutDetective](https://www.irradiatedsoftware.com/labs/) 替代工具，延续了它简洁、专注的思路；感谢 Irradiated Software 带来的原始创意。
-
 ## 功能特性
+
+> Hotkey Finder 是一款 macOS 上的 [ShortcutDetective](https://www.irradiatedsoftware.com/labs/) 替代工具，延续了它简洁、专注的思路；感谢 Irradiated Software 带来的原始创意。
 
 - 结合键盘事件目标、App 激活变化和新出现的窗口识别响应方
 - 展示 App 名称、图标、Bundle ID、PID 和侦测方式
@@ -25,6 +23,41 @@ Hotkey Finder 是一款 macOS 上的 [ShortcutDetective](https://www.irradiateds
 - Hotkey Finder 不在前台时自动暂停侦测
 - 支持英语、简体中文、繁体中文、日语和泰语
 - 完全基于 Apple 原生框架，不包含第三方依赖
+
+## 下载
+
+[下载最新版 Hotkey Finder](https://github.com/lcx-seima/hotkey-finder/releases/latest/download/Hotkey-Finder.zip)，或前往 [GitHub Releases](https://github.com/lcx-seima/hotkey-finder/releases/latest) 查看所有版本。
+
+> [!WARNING]
+> 当前下载包没有 Developer ID 签名，也没有经过 Apple 公证。请只安装从本仓库下载的版本。
+
+首次打开 App：
+
+1. 解压后将 **Hotkey Finder.app** 移到 `/Applications`，并尝试打开一次。
+2. macOS 阻止打开后，进入**系统设置 > 隐私与安全性**。
+3. 向下滚动到**安全性**，找到 Hotkey Finder 并点击**仍要打开**，完成身份验证后再次确认**打开**。
+
+启动后，请按 App 内的提示授予“输入监控”权限；如果 macOS 提示需要重启，请退出后重新打开 App。
+
+<details>
+<summary>为什么 macOS 会显示安全提示？</summary>
+
+下载包使用 ad-hoc 签名，而不是付费的 Apple Developer ID 签名，因此 macOS 无法验证开发者身份或通过 Apple 公证服务检查这个 App。
+
+上述“仍要打开”操作只会为 Hotkey Finder 创建例外，无需全局关闭 Gatekeeper。该按钮通常只会在首次打开被阻止后显示约一小时。覆盖安全警告前，请阅读 [Apple 的安全说明](https://support.apple.com/zh-cn/102445)。安装新版本后，macOS 可能要求重新授予隐私权限。
+
+</details>
+
+<details>
+<summary>校验下载包完整性</summary>
+
+同时下载同一 Release 中的 `Hotkey-Finder.zip.sha256`，然后运行：
+
+```bash
+shasum -a 256 -c Hotkey-Finder.zip.sha256
+```
+
+</details>
 
 ## 工作原理
 
@@ -43,27 +76,6 @@ Hotkey Finder 是一款 macOS 上的 [ShortcutDetective](https://www.irradiateds
 - 从源码构建时需要 Xcode 26 或更高版本
 - 需要授予“输入监控”权限
 - 可选授予“屏幕录制”权限，用于基于窗口变化进行侦测
-
-## 下载
-
-前往 [GitHub Releases](https://github.com/lcx-seima/hotkey-finder/releases/latest) 下载最新版本，也可以使用[固定直链](https://github.com/lcx-seima/hotkey-finder/releases/latest/download/Hotkey-Finder.zip)。
-
-> [!WARNING]
-> 当前下载包**仅使用 ad-hoc 签名，没有 Developer ID 签名，也没有经过 Apple 公证**。macOS 无法验证开发者身份，也无法通过 Apple 公证服务检查这个 App。请仅在确认安装包来自本仓库并接受这一限制时继续。安装新版本后可能需要重新授予隐私权限。
-
-首次打开 App：
-
-1. 解压后将 **Hotkey Finder.app** 移到 `/Applications`，并尝试打开一次。
-2. macOS 阻止打开后，进入**系统设置 > 隐私与安全性**。
-3. 向下滚动到**安全性**，找到 Hotkey Finder 并点击**仍要打开**，完成身份验证后再次确认**打开**。
-
-该操作只会为这个 App 创建例外，无需全局关闭 Gatekeeper。“仍要打开”按钮通常只会在首次打开被阻止后显示约一小时。覆盖安全警告前请阅读 [Apple 的安全说明](https://support.apple.com/zh-cn/102445)。
-
-如需校验安装包完整性，请同时下载同一 Release 中的 `Hotkey-Finder.zip.sha256` 并运行：
-
-```bash
-shasum -a 256 -c Hotkey-Finder.zip.sha256
-```
 
 ## 构建与运行
 
